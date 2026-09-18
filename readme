@@ -1,0 +1,194 @@
+
+python3 -m venv myvenv
+source myvenv/bin/activate
+
+pip install -r requirements.txt  
+
+run: uvicorn main:app --reload 
+
+uvicorn crud:app --reload 
+
+to check data gets stored in db: 
+run: 
+SELECT * FROM books;
+
+
+1. Open MySQL
+
+Keep your FastAPI server running in one Terminal, and open another Terminal.
+
+Run:
+
+mysql -u root
+
+Since your root password is empty, just press Enter if prompted.
+
+2. Select your database
+
+Inside MySQL:
+
+USE fastapi_crud;
+
+3. Check the tables
+SHOW TABLES;
+
+You should see:
+
+books
+4. Check the data
+
+Run:
+
+SELECT * FROM books;
+Useful MySQL commands
+USE fastapi_crud;
+
+SHOW TABLES;
+
+DESCRIBE books;
+
+SELECT * FROM books;
+
+To see only specific columns:
+
+SELECT id, title, author FROM books;
+
+To count records:
+SELECT COUNT(*) FROM books;
+
+
+
+
+
+
+
+
+PART 2: 
+
+mysql -u root -p 
+
+CREATE DATABASE fastapi_crud;
+SHOW DATABASES;
+
+to run : python create_table.py 
+in terminal run: 
+USE fastapi_crud;
+SHOW TABLES;
+
+run:  uvicorn project:app --reload 
+
+
+1. Check if MySQL is already installed
+
+Run:
+
+brew list | grep mysql
+
+Also:
+
+mysql --version
+
+If you get something like:
+
+mysql  Ver 8.0.x ...
+
+MySQL is already installed.
+
+2. If it's not installed
+
+Install it with:
+
+brew install mysql
+
+Then start the MySQL server:
+
+brew services start mysql
+
+Check:
+
+brew services list | grep mysql
+
+You want to see:
+
+mysql    started
+
+
+
+
+
+brew services list | grep mysql 
+output: mysql none                 
+
+Your current situation
+
+You have MySQL installed:
+
+mysql
+
+Your version is:
+
+MySQL 5.7.24
+
+But the MySQL server is not running:
+
+mysql none
+
+That's why you get:
+
+ERROR 2002: Can't connect to local MySQL server through socket '/tmp/mysql.sock'
+
+The password is not the problem yet. MySQL isn't running, so it cannot even check the password.
+
+Step 1 — Start MySQL
+
+Try:
+
+brew services start mysql
+
+Then:
+
+brew services list | grep mysql
+
+You should ideally see:
+
+mysql started
+Step 2 — Connect
+
+Then run:
+
+mysql -u root -p
+
+You'll get:
+
+Enter password:
+
+Enter your MySQL root password/ just press enter
+
+
+
+
+
+PART 3: AUTHENTICATION 
+
+cd auth
+run: python key.py
+
+you wll get secret key 
+
+uvicorn main:app --reload
+
+// to create table in database run authtable file 
+cd auth 
+python create_auth_table.py
+
+cd ..
+python -m auth.create_auth_table
+
+
+
+
+uvicorn auth.main:app --reload
+
+
+
+
