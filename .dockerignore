@@ -1,0 +1,7 @@
+myvenv/
+__pycache__/
+.git/
+.env
+.DS_Store
+
+
