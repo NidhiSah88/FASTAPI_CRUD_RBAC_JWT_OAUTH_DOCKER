@@ -1379,6 +1379,8 @@ docker.io/nidhiksah/fastapi_mysql:latest
 (myvenv) (base) nidhikumari@Nidhis-MacBook-Pro FASTAPICRUD % 
 
 
+uvicorn auth.main:app --reload 
+
 
 
 
